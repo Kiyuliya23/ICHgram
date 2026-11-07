@@ -1,0 +1,164 @@
+.login{
+   width: 100%;
+   min-height: 765px;
+   background: #fff;
+
+}
+.loginContainer {
+  width: 935px;
+  height: 733px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 32px auto 0;
+  padding-top: 12px;
+  padding-left: 86.34px;
+  gap: 32.01px;
+}
+
+.loginImage{
+     width: 380px;
+  height: 581px;
+  object-fit: contain;  /* Показывает картинку целиком, сохраняя пропорции. */
+  flex-shrink: 0; /* Запрещает сжимать картинку при нехватке места. */
+  margin-top: 41.92px;
+    
+}
+
+.loginContent{
+width: 350px;
+height: 689px;
+flex-shrink: 0;
+}
+
+.loginForm{
+width: 350px;
+height: 411px;
+border: 1px solid #dbdbdb;
+border-radius: 1px;
+background: #fff ;
+margin-top: 49.5px;
+}
+.logo{
+   display: block;
+   width: 190px;
+   height: 106.87px;
+   object-fit: contain; /* Сохраняет пропорции логотипа. */ 
+   margin: 30.5px auto -24.37; 
+}
+
+.formContent{
+    width: 348px;
+    height: 274px;
+    padding-top: 25px;
+
+}
+
+.loginEmail{
+width: 258px;
+margin: 0 49px 7px 41px;
+}
+
+.loginPassword{
+    width: 258px;
+    margin: 0 49px 14px 41px;
+}
+.passwordInput{
+    width: 258px;
+    height: 36px ;
+}
+.loginInput{
+    width: 100%;
+    height: 36px;
+}
+
+.btn{
+    width: 268px;
+    height: 32px;
+    border-radius: 8px;
+    background: #0095f6;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    height: 15px;
+    margin-top: 20.8px;
+}
+.divider::before,
+.divider::after{
+    content: "";
+    width: 106.25px;
+    height: 1px;
+    background:#dbdbdb ;
+    flex-shrink: 0;
+
+}
+.divider span {
+    font-family: var(--font-familly, Arial, sans-serif);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 115%;
+    text-transform: uppercase;
+    color: #737373;
+}
+
+.forgotPassword{
+    display: block;
+    width: 348px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin-top: 71.18px;
+    font-family: var(--font-family);
+font-weight: 400;
+font-size: 12px;
+line-height: 133%;
+text-align: center;
+text-decoration: underline;
+text-decoration-skip-ink: none;
+color: #00376b;
+}
+
+
+.blockSinUp{
+    width: 350px;
+    height: 63px;
+    border: 1px solid #dbdbdb;
+    border-radius: 1px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.SinUp{
+    margin: 0;
+    font-family:var(--font-family, Arial, sans-serif);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    text-align: center;
+    color: #000;
+    
+}
+.SinUp a{
+   font-family: var(--font-family);
+font-weight: 600;
+font-size: 14px;
+line-height: 129%;
+text-align: center;
+text-decoration: underline;
+text-decoration-skip-ink: none;
+color: #0095f6; 
+}

@@ -1,0 +1,145 @@
+.register{
+    width: 100%;
+    min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: #fff;
+   flex-direction: column;
+   justify-content: flex-start;
+   padding-top: 140px;
+   
+}
+
+.registerForm{
+    width: 350px;
+    min-height: 554px;
+border: 1px solid #dbdbdb;
+border-radius: 1px;
+width: 350px;
+height: 554px;
+background: #fff;
+}
+
+.logo{
+width: 190px;
+height: 106px;
+ display: block;
+ object-fit: contain;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 19px;
+}
+
+.registerHeader{
+ width: 348px;
+display: flex;
+justify-content: center;
+}
+
+.registerTitle{
+width: 268px;
+margin: 0;
+font-family: var(--font-family);
+font-weight: 600;
+font-size: 16px;
+line-height: 125%;
+text-align: center;
+color: #737373;
+}
+
+.registerFields {
+   width: 268px;
+   margin: 36px auto 0; 
+}
+
+.Email,.FullName,.UserName,.password{
+ width: 100%;
+
+}
+.registerInput{
+border: 1px solid #dbdbdb;
+border-radius: 3px;
+width: 268px;
+height: 38px;
+background: #fafafa; 
+}
+.registerInfo{
+    width: 268px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.registerInfo p:first-child{
+    width: 266px;
+    margin: 0;
+    font-family: var(--font-family);
+font-weight: 400;
+font-size: 11px;
+line-height: 135%;
+text-align: center;
+color: #737373;
+}
+.registerInfo p:nth-child{
+     width: 266px;
+    margin: 0;
+    font-family: var(--font-family);
+font-weight: 400;
+font-size: 11px;
+line-height: 135%;
+text-align: center;
+color: #737373;
+}
+.registerInfo a {
+   font-family: var(--font-family);
+font-weight: 400;
+font-size: 12px;
+line-height: 133%;
+text-align: center;
+color: #00376b; 
+}
+.registerInfo p:nth-child(2) {
+  width: 260px; /* Ширина второго абзаца по макету. */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
+}
+
+.btn{
+    width: 268px;
+    height: 32px;
+   border-radius: 8px;
+ background: #0095f6;
+ margin-bottom: 51.98px;
+ display: block;
+ margin: 26px auto 0 ;
+ padding: 0;
+ border: none;
+ 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loginBlock{
+border: 1px solid #dbdbdb;
+border-radius: 1px;
+width: 350px;
+height: 70px;
+ background: #fff;
+ margin-top: 15px;
+}
