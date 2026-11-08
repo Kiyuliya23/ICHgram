@@ -17,7 +17,6 @@
 border: 1px solid #dbdbdb;
 border-radius: 1px;
 width: 350px;
-height: 554px;
 background: #fff;
 }
 
@@ -55,7 +54,10 @@ color: #737373;
 
 .Email,.FullName,.UserName,.password{
  width: 100%;
-
+ margin-bottom: 6px;
+}
+.password{width: 100%;
+margin-bottom: 0;
 }
 .registerInput{
 border: 1px solid #dbdbdb;
@@ -66,23 +68,22 @@ background: #fafafa;
 }
 .registerInfo{
     width: 268px;
-    margin-left: auto;
-    margin-right: auto;
+   margin: 26px auto 0;
     text-align: center;
 }
 .registerInfo p:first-child{
-    width: 266px;
-    margin: 0;
-    font-family: var(--font-family);
+ width: 266px;
+ margin: 0;
+ font-family: var(--font-family);
 font-weight: 400;
 font-size: 11px;
 line-height: 135%;
 text-align: center;
 color: #737373;
 }
-.registerInfo p:nth-child{
-     width: 266px;
-    margin: 0;
+.registerInfo p:nth-child(2){
+     width: 260px;
+    margin:18px auto 0;
     font-family: var(--font-family);
 font-weight: 400;
 font-size: 11px;
@@ -98,7 +99,7 @@ line-height: 133%;
 text-align: center;
 color: #00376b; 
 }
-.registerInfo p:nth-child(2) {
+.registerInfo p {
   width: 260px; /* Ширина второго абзаца по макету. */
   margin-left: auto;
   margin-right: auto;
@@ -110,36 +111,36 @@ color: #00376b;
     height: 32px;
    border-radius: 8px;
  background: #0095f6;
- margin-bottom: 51.98px;
  display: block;
  margin: 26px auto 0 ;
  padding: 0;
  border: none;
+ font-family: var(--font-family);
+font-weight: 600;
+font-size: 14px;
+line-height: 129%;
+text-align: center;
+color: #fff;
  
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .loginBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 border: 1px solid #dbdbdb;
 border-radius: 1px;
 width: 350px;
 height: 70px;
  background: #fff;
  margin-top: 15px;
+}
+.loginBlock p {
+    margin: 0;
+    font-family: var(--font-family);
+font-weight: 600;
+font-size: 14px;
+line-height: 129%;
+text-align: center;
+color: #0095f6;
 }

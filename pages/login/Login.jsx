@@ -44,7 +44,7 @@ const Login = () => {
               name="login"
               rules={[
                 {
-                  required: true, // Требуем заполнить поле.
+                 required: true, // Требуем заполнить поле.
                   whitespace: true, // Запрещаем значение только из пробелов.
                   message: "Please enter your username or email!", // Текст ошибки.
                 },
