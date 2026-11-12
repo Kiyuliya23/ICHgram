@@ -1,0 +1,274 @@
+.messages {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.chat {
+  flex: 1;
+  min-width: 0;
+}
+.dialogs {
+  width: 398px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-right: 1px solid #dbdbdb;
+  background: #fff;
+}
+.dialogsHeader {
+  display: flex;
+  align-items:flex-start;
+  width: 100%;
+  height: 75px;
+  box-sizing: border-box;
+  padding: 34.5px 24px 0;
+  flex-shrink: 0;
+}
+.dialogItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 72px;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  border: none;
+  background: #fff;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dialogItemActive {
+  background: #efefef;
+}
+
+
+
+
+.accountName {
+  margin: 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 125%;
+  color: #000;
+}
+.dialogsList {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 44px;
+
+}
+.dialogAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.dialogInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 75px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.chatName {
+  margin: 0;
+  line-height: 20px;
+}
+.chatAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.chatProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileName {
+  margin:17px 0 0;
+  line-height: 25px;
+  text-align: center;
+}
+
+.chatProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 63px;
+  margin-bottom: 65.01px;
+
+}
+
+.profileAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.profileSubtitle {
+  margin: 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  text-align: center;
+  color: #737373;
+}
+.viewProfileButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 173px;
+  height: 32px;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  background: #efefef;
+  cursor: pointer;
+  margin-top: 17.5px;
+}
+.messageDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  margin: 0;
+  background: #fff;
+}
+
+.messageList {
+  display: flex;
+  flex-direction: column;
+  min-height: 369px;
+  padding: 0 18px 0 14px;
+  box-sizing: border-box;
+}
+
+.messageInput {
+ display: block;
+  width: calc(100% - 36px);
+  height: 46px;
+  margin: 16px 4px 0 32px;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 22px;
+  background: #fff;
+  padding-left: 51px;
+font-family: var(--font-family, Arial, sans-serif);
+font-weight: 400;
+font-size: 15px;
+line-height: 120%;
+}
+.messageInput::placeholder {
+  color: #8e8e8e;
+  opacity: 1;
+}
+ 
+.messageItem {
+  margin: 0;
+  max-width: 397px;
+  min-height: 72px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: #efefef;
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+  margin-top: 15px;
+  padding:29px 17px 29px 18px;
+}
+
+.messageRow {
+  display: flex;
+  align-items: flex-start;
+}
+
+.messageAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.messageRowOwn {
+  justify-content: flex-end;
+}
+
+.messageItemOwn {
+  background: #4d00ff;
+  color: #fff;
+  font-family: var(--font5);
+font-weight: 400;
+font-size: 12px;
+line-height: 129%;
+color: #fff;
+}
+
+.messageComposer {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 36px);
+  height: 46px;
+  margin: 16px 4px 0 32px;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.messageInput {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  height: 100%;
+  margin: 0;
+  padding: 0 12px 0 51px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 22px;
+  background: transparent;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
+  outline: none;
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin-right: 4px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #4d00ff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sendButton:disabled {
+  color: #b5b5b5;
+  cursor: default;
+}
+.messageComposer:focus-within {
+  border-color: #4d00ff;
+}

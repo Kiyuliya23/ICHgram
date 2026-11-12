@@ -1,0 +1,47 @@
+.posts {
+  display: grid;
+  grid-template-columns: repeat(2, 404px);
+  column-gap: 39px;
+  padding-top: 58px;
+  padding-left: 78px;
+}
+
+.feedEnd {
+  width: 404.82px;
+  min-height: 216.19px;
+  box-sizing: border-box;
+  background: #fff;
+  text-align: center;
+  padding-top: 27.56px;
+  padding-bottom: 56.85px;
+  margin-top: 10.38px;
+  margin-left: 301px;
+}
+
+.feedEndIcon {
+  display: block;
+  width: 82.69px;
+  height: 82.69px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.feedEndTitle {
+  margin: 10.7px 0 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 129%;
+  text-align: center;
+  color: #000;
+}
+
+.feedEndText {
+  margin: 3.88px 0 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 129%;
+  text-align: center;
+  color: #737373;
+}

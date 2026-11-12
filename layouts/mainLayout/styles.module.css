@@ -1,0 +1,13 @@
+.mainLayout {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.layout {
+  background: #fff;
+}
+
+.content {
+  min-width: 0;
+  background: #fff;
+}

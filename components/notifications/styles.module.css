@@ -1,0 +1,62 @@
+.Notifications {
+     width: 397px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border-right: 1px solid #dbdbdb;
+  border-radius: 0 16px 16px 0;
+  background: #fff;
+  padding: 20px 24px ;
+}
+.title{
+    margin: 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 125%;
+  color: #000;
+   
+}
+.subtitle{
+   margin:16.5px 0 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #000;
+    
+}
+.notificationsItem {
+    display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+.notificationsText {
+margin: 0 0 0 14px;
+flex: 1;
+min-width: 0;
+}
+
+.subtitle + .notificationsItem {
+  margin-top: 16.5px;
+}
+.avatar{
+    flex-shrink: 0;
+}
+.username{
+font-family: var(--font-family);
+font-weight: 600;
+font-size: 14px;
+line-height: 129%;
+color: #000; 
+}
+.postThumbnail {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-left: 12px;
+  border-radius: 8px;
+
+}

@@ -1,0 +1,57 @@
+.sidebar {
+  border-right: 1px solid #dbdbdb;
+}
+
+.logo {
+  display: block;
+  width: 97px;
+  height: 54.56px;
+  object-fit: contain;
+  margin-top: 28px;
+  margin-left: 25px;
+}
+
+.menu {
+  margin-top: 21.44px;
+  border-inline-end: none;
+}
+
+.menu :global(.ant-menu-item) {
+  width: 220px;
+  height: 48px;
+  line-height: 48px;
+  margin: 0 12px;
+  border-radius: 8px;
+}
+
+.menu :global(.ant-menu-item).notificationsItem {
+  margin-top: 4px;
+}
+
+.menu :global(.ant-menu-item).createItem {
+  margin-top: 6px;
+}
+
+.menu :global(.ant-menu-item).profileItem {
+  margin-top: 47px;
+}
+
+.menu :global(.ant-menu-item-icon + .ant-menu-title-content) {
+  margin-inline-start: 16px;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 700;
+  line-height: 125%;
+  color: #000;
+}
+
+.menu :global(.ant-menu-item .ant-menu-item-icon) {
+  font-size: 24px;
+  color: #000;
+}
+
+.profileIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 50%;
+}

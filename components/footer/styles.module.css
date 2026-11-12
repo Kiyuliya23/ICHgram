@@ -1,0 +1,33 @@
+.footer{
+    width: 1440px;
+    height: 158px;
+    background: #fff;
+    padding: 22px 0 0;
+    box-sizing: border-box;
+}
+.footerNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+
+    .footerNav span {
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400; 
+  font-size: 12px;
+  line-height: 133%; /* Примерно 16px на строку. */
+  color: #737373;
+}
+
+
+.copiright{
+    margin: 45px 0 0; /* Отступ после строки названий. */
+  text-align: center; /* Центрируем копирайт. */
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: #737373;
+}
