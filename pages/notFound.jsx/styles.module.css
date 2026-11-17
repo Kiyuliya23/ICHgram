@@ -1,0 +1,31 @@
+.notFound{
+    display: flex;
+    margin-top: 94px;
+    margin-left: 119px;
+    background: #fff;
+    gap: 44px;
+    margin-bottom: 185px;
+}
+
+.loginImage{
+    width: 301px;
+    height: auto;
+}
+.oopsError {
+  margin-top: 47px;
+}
+.pageNotFound {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  line-height: 57px;
+}
+.textError {
+  margin: 10px 0 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: #737373;
+}

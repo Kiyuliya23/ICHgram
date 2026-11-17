@@ -7,17 +7,25 @@ import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import Footer from "../../components/footer/Footer.jsx";
 import Search from "../../components/search/Search.jsx";
 import Notifications from "../../components/notifications/Notifications.jsx";
+import CreatePost from "../../components/createPost/CreatePosr.jsx";
 
 const { Content } = Layout;
 
 const MainLayout = () => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleMenuClick = ({ key }) => {
-   
 
+    if(key === "create") {
+      setCreateOpen(true);
+      setSearchOpen(false);
+      setNotificationsOpen(false);
+
+    }
+  
     if (key === "notifications") {
       setNotificationsOpen((prev) => !prev);
       setSearchOpen(false);
@@ -34,6 +42,8 @@ const MainLayout = () => {
         navigate("/explore");
       }else if (key === "messages") {
         navigate("/messages");
+      }else if (key === "profile"){
+        navigate("/profile")
       }
     }
   };
@@ -45,6 +55,9 @@ const MainLayout = () => {
 
         {notificationsOpen && <Notifications />}
         {searchOpen && <Search />}
+        <CreatePost open={createOpen}
+        onClose={() => setCreateOpen(false)}
+        />
 
         <Content className={styles.content}>
           <Outlet />
