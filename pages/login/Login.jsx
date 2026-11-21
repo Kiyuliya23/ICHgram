@@ -1,20 +1,35 @@
 
-import { Link } from "react-router-dom";
-import { Form, Input, Button } from "antd";
-import loginImage from "../../client/src/assets/image/login_imag.png";
-import styles from "./styles.module.css"; 
-import logo from "../../client/src/assets/logo/logo.png"
 
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Input, Button, message } from "antd";
+import axios from "axios";
+import loginImage from "../../client/src/assets/image/login_imag.png";
+import styles from "./styles.module.css";
+import logo from "../../client/src/assets/logo/logo.png";
 
 
 // onFinish- функция которая выполниться после отправки формы ,если все поля прошли валидацию 
 const Login = () => {
-  const onFinish = (values) => {
-    const { login, password } = values;
+  const navigate = useNavigate();
+const [messageApi, contextHolder] = message.useMessage();
 
 
+  const onFinish = async(values) => {
+    try {
+      const { login, password } = values;
+      const response = await axios.post(
+         "http://localhost:3333/auth/login",
+      { login, password }
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/home");
 
-    // Здесь позже подключим запрос на вход.
+    } catch (error) {
+      messageApi.error(
+        error.response?.data?.message ||
+          "Не удалось войти. Проверь подключение к серверу."
+      );
+    }
   };
 
   return (
@@ -50,7 +65,7 @@ const Login = () => {
                 },
               ]}
             >
-              <Input placeholder="Username, or email"  classNames={styles.loginInput}/>
+              <Input placeholder="Username, or email"  className={styles.loginInput}/>
             </Form.Item>
 
             <Form.Item

@@ -11,6 +11,7 @@ import Explore from '../../components/explore/Explore.jsx';
 import Profile from '../../pages/profile/Profile.jsx';
 import EditProfile from '../../pages/editProfile/EditProfile.jsx';
 import NotFound from '../../pages/notFound.jsx/NotFound.jsx';
+import UserProfile from "../../pages/userProfile/UserProfile.jsx";
 
 
 
@@ -33,6 +34,7 @@ function App() {
       <Route path="/messages" element={<Messages/>} />
        <Route path="/explore" element={<Explore />} />
        <Route path="/profile" element={<Profile />} />
+       <Route path="/profile/:id" element={<UserProfile />} />
        <Route path="/edit-profile" element={<EditProfile/>} />
        <Route path="*" element={<NotFound />} />
     </Route>

@@ -1,121 +1,112 @@
 import { Button } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import styles from "./styles.module.css";
 import ich from "../../client/src/assets/icon/ich.png";
 import PostModal from "../../components/postModal/PostModal";
-import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [isFollowing, setIsFollowing] = useState(false);
-
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const handleFollow = () => {
-    // Позже подключим запрос на подписку.
-  };
+  useEffect(() => {
+    const loadProfile = async () => {
+      const token = localStorage.getItem("token");
 
-  const handleMessage = () => {
-    // Позже подключим открытие переписки.
-  };
+      if (!token) {
+        navigate("/");
+        return;
+      }
 
-  const user = {
-    id: "1",
-    username: "itcareerhub",
-    postsCount: 0,
-    followersCount: 0,
-    followingCount: 0,
-    bio: "• Гарантия помощи с трудоустройством в ведущие IT-компании\n• Выпускники зарабатывают от 45к евро\nБЕСПЛАТНАЯ",
-    website: "https://bit.ly/3rpilbh",
-  };
-  const posts = [
-      {
-  id: "1",
-  imageUrl: ich,
-  description: "Длинное описание ",
-  author: {
-    id: user.id,
-    username: user.username,
-    avatarUrl: ich,
-  },
-  comments: [
-    {
-      id: "comment-1",
-      text: "Очень красивая фотография!",
-      author: {
-        id: "2",
-        username: "anna",
-        avatarUrl: ich,
-      },
-    },
-  ],
-},
-  ];
-    const currentUserId = "1";
-    const isOwnProfile = currentUserId === user.id;
-    
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
 
+        const [profileResponse, postsResponse] = await Promise.all([
+          axios.get("http://localhost:3333/users/me", config),
+          axios.get("http://localhost:3333/posts/me", config),
+        ]);
 
-  
+        setUser(profileResponse.data.user);
+        setPosts(postsResponse.data.posts);
+      } catch (error) {
+        if (
+          error.response?.status === 401 ||
+          error.response?.status === 403
+        ) {
+          localStorage.removeItem("token");
+          navigate("/");
+          return;
+        }
+
+        setError("Не удалось загрузить профиль и публикации.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfile();
+  }, [navigate]);
+
+  if (loading) {
+    return <p>Загрузка профиля...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className={styles.profile}>
       <div className={styles.profileBox}>
         <div className={styles.profileIcon}>
           <img
-            src={ich}
+            src={user.avatarUrl || ich}
             className={styles.profileAvatar}
-            alt="IT Career Hub"
+            alt={`Аватар ${user.username}`}
           />
         </div>
 
         <div className={styles.profileInfo}>
-
           <div className={styles.profileActions}>
             <h2 className={styles.username}>
               {user.username}
             </h2>
-            {isOwnProfile ? (
-    <Button className={styles.editButton}
-    onClick={()=> navigate("/edit-profile")}
-    >
-      Edit profile
-    </Button>
-  ) : (  
-    <>
-      <Button
-        type="primary"
-        className={styles.followButton}
-        onClick={handleFollow}
-      >
-        {isFollowing ? "Following" : "Follow"}
-      </Button>
 
-      <Button
-        className={styles.messageButton}
-        onClick={handleMessage}
-      >
-        Message
-      </Button>
-    </>
-  )}
-</div>
-
-            
+            <Button
+              className={styles.editButton}
+              onClick={() => navigate("/edit-profile")}
+            >
+              Edit profile
+            </Button>
+          </div>
 
           <div className={styles.profileStats}>
-            <span>
-              <strong>{user.postsCount}</strong> posts
-            </span>
+  <span>
+    <strong>{posts.length}</strong> posts
+  </span>
 
-            <span>
-              <strong>{user.followersCount}</strong> followers
-            </span>
+  <span>
+    <strong>{user.followers?.length ?? 0}</strong> followers
+  </span>
 
-            <span>
-              <strong>{user.followingCount}</strong> following
-            </span>
-          </div>
+  <span>
+    <strong>{user.following?.length ?? 0}</strong> following
+  </span>
+</div>
 
           <div className={styles.info}>
             <p className={styles.bio}>{user.bio}</p>
@@ -135,30 +126,41 @@ const Profile = () => {
       </div>
 
       <div className={styles.postsGrid}>
-  {posts.map((post) => (
-    <button
-      key={post.id}
-      type="button"
-      className={styles.postCard}
-      aria-label="Открыть публикацию"
-      onClick={() => setSelectedPost(post)}
-    >
-            <img
-              src={post.imageUrl}
-              alt={post.description || "Фотография публикации"}
-              className={styles.postImage}
-            />
+        {posts.map((post) => (
+          <button
+            key={post.id}
+            type="button"
+            className={styles.postCard}
+            aria-label="Открыть публикацию"
+            onClick={() => setSelectedPost(post)}
+          >
+            {post.imageUrl ? (
+              <img
+                src={post.imageUrl}
+                alt={post.description || "Фотография публикации"}
+                className={styles.postImage}
+              />
+            ) : (
+              <p>{post.description}</p>
+            )}
           </button>
         ))}
       </div>
-        {selectedPost && (
+
+     
+      {selectedPost && (
   <PostModal
     key={selectedPost.id}
     post={selectedPost}
-    currentUserId={currentUserId.id}
+    currentUserId={user.id}
+    onDeleted={(deletedId) => {
+      setPosts((previousPosts) =>
+        previousPosts.filter((post) => post.id !== deletedId)
+      );
+    }}
     onClose={() => setSelectedPost(null)}
-      />
-        )}
+  />
+)}
     </div>
   );
 };

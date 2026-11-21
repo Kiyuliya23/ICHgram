@@ -1,71 +1,138 @@
 import styles from "./styles.module.css";
-import { Avatar, Button } from 'antd';
-import { UserOutlined } from "@ant-design/icons";
-import postImage from "../../client/src/assets/image/post-1.jpg";
-import likeIcon from "../../client/src/assets/icon/like.svg";
+import { Avatar, Button, message } from "antd";
+import {
+  UserOutlined,
+  HeartOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
+import { useState } from "react";
+import axios from "axios";
+import PostModal from "../postModal/PostModal";
 import messageIcon from "../../client/src/assets/icon/message.svg";
 
+const PostCard = ({ post, currentUserId, onDeleted }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLiked, setIsLiked] = useState(post.isLiked ?? false);
+  const [likesCount, setLikesCount] = useState(post.likesCount ?? 0);
+  const [liking, setLiking] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
+  const author = post.author;
+  const isOwner = currentUserId === author.id;
 
-const PostCard = () => {
-  const user = {
-    id: "1",
-    username: "sashaa",
+  const publishedLabel = new Date(
+    post.createdAt
+  ).toLocaleDateString("ru-RU");
+
+  const handleLike = async () => {
+    if (liking) return;
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      messageApi.error("Сначала войди в аккаунт.");
+      return;
+    }
+
+    setLiking(true);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:3333/posts/${post.id}/like`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setIsLiked(response.data.isLiked);
+      setLikesCount(response.data.likesCount);
+    } catch (error) {
+      messageApi.error(
+        error.response?.data?.message ||
+          "Не удалось изменить лайк."
+      );
+    } finally {
+      setLiking(false);
+    }
   };
 
-  const post = {
-    id: "1",
-    description: "It’s golden, Ponyboy!",
-    image: postImage,
-    likesCount: 101824,
-    commentsCount: 732,
-    publishedLabel: "2 wek",
-  };
+  const handleClosePost = () => {
+    setIsOpen(false);
 
-  const comment = {
-    id: "1",
-    author: {
-      id: "2",
-      username: "heyyyyy",
-    },
-    text: "I M...",
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
+    axios
+      .get(`http://localhost:3333/posts/${post.id}/like`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setIsLiked(response.data.isLiked);
+        setLikesCount(response.data.likesCount);
+      })
+      .catch(() => {
+        messageApi.error("Не удалось обновить лайки.");
+      });
   };
 
   return (
     <div className={styles.PostCard}>
+      {contextHolder}
+
       <div className={styles.postHeader}>
         <Avatar
           className={styles.postAvatar}
+          src={author.avatarUrl || undefined}
           icon={<UserOutlined />}
         />
 
-        <span className={styles.username}>{user.username}</span>
-        <span className={styles.postDate}>
-          · {post.publishedLabel} ·
+        <span className={styles.username}>
+          {author.username}
         </span>
 
-        <Button type="link" className={styles.followButton}>
-          Follow
-        </Button>
+        <span className={styles.postDate}>
+          {" "}· {publishedLabel}
+        </span>
+
+        {!isOwner && (
+          <Button
+            type="link"
+            className={styles.followButton}
+            disabled
+          >
+            Follow
+          </Button>
+        )}
       </div>
 
-      <img
-        src={post.image}
-        alt="Фото публикации"
-        className={styles.postImage}
-      />
+      {post.imageUrl && (
+        <img
+          src={post.imageUrl}
+          alt={post.description || "Фото публикации"}
+          className={styles.postImage}
+        />
+      )}
 
       <div className={styles.postActions}>
         <Button
           type="text"
           icon={
-            <img
-              src={likeIcon}
-              className={styles.likeIcon}
-              alt=""
-            />
+            isLiked ? (
+              <HeartFilled style={{ color: "#ed4956" }} />
+            ) : (
+              <HeartOutlined />
+            )
           }
-          aria-label="Поставить лайк"
+          aria-label={isLiked ? "Убрать лайк" : "Поставить лайк"}
+          aria-pressed={isLiked}
+          disabled={liking}
+          onClick={handleLike}
         />
 
         <Button
@@ -78,32 +145,43 @@ const PostCard = () => {
             />
           }
           aria-label="Открыть комментарии"
+          onClick={() => setIsOpen(true)}
         />
       </div>
 
       <div className={styles.postInfo}>
         <p className={styles.likes}>
-          {post.likesCount.toLocaleString("ru-RU")} likes
+          {likesCount.toLocaleString("ru-RU")} likes
         </p>
 
-        <p className={styles.description}>
-          <span className={styles.username}>{user.username}</span>{" "}
-          <span className={styles.descriptionText}>
-            {post.description}
-          </span>
-        </p>
+        {post.description && (
+          <p className={styles.description}>
+            <span className={styles.username}>
+              {author.username}
+            </span>{" "}
+            <span className={styles.descriptionText}>
+              {post.description}
+            </span>
+          </p>
+        )}
 
-        <p className={styles.comment}>
-          <span className={styles.username}>
-            {comment.author.username}
-          </span>{" "}
-          {comment.text}
-        </p>
-
-        <button type="button" className={styles.viewComments}>
-          View all comments ({post.commentsCount})
+        <button
+          type="button"
+          className={styles.viewComments}
+          onClick={() => setIsOpen(true)}
+        >
+          View all comments
         </button>
       </div>
+
+      {isOpen && (
+        <PostModal
+          post={post}
+          currentUserId={currentUserId}
+          onClose={handleClosePost}
+          onDeleted={onDeleted}
+        />
+      )}
     </div>
   );
 };

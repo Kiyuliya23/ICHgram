@@ -109,9 +109,13 @@ color: #737373;
 }
 
 .viewComments{
-  font-family: var(--font-family);
-font-weight: 400;
-font-size: 12px;
-line-height: 129%;
-color: #737373;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  font: inherit;
+  color: #737373;
+  text-align: left;
+  cursor: pointer;
 }

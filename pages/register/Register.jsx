@@ -1,20 +1,41 @@
-import { Link } from "react-router-dom";
-import { Form, Input, Button } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Input, Button, message } from "antd";
 import logo from "../../client/src/assets/logo/logo.png";
 import styles from "./styles.module.css";
+import axios from "axios";
+
 
 
 
 const Register = () => {
-  const onFinish = (values) => {
-    const { email, fullName, username, password } = values;
 
-    // Здесь позже подключим запрос на регистрацию.
+  const navigate = useNavigate();
+    const [messageApi, contextHolder] = message.useMessage();
+    
+  const onFinish = async(values) => {
+   try {
+     const { email, fullName, username, password } = values;
+
+     await axios.post("http://localhost:3333/auth/register", {
+  email,
+  fullName,
+  username,
+  password,
+
+     });
+     navigate("/")
+   } catch (error) {
+    messageApi.error(
+      error.response?.data?.message ||
+       "Не удалось зарегистрироваться. Проверь подключение к серверу."
+    );
+   }
   };
 
   return (
     
     <div className={styles.register}>
+      {contextHolder}
       <Form
         name="register"
         className={styles.registerForm}
@@ -41,7 +62,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input placeholder="Email"  classNames={styles.registerInput}/>
+            <Input placeholder="Email"  className={styles.registerInput}/>
           </Form.Item>
 
           <Form.Item
@@ -55,7 +76,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input placeholder="Full Name"  classNames={styles.registerInput}/>
+            <Input placeholder="Full Name"  className={styles.registerInput}/>
           </Form.Item>
 
           <Form.Item
@@ -69,7 +90,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input placeholder="Username" classNames={styles.registerInput}/>
+            <Input placeholder="Username" className={styles.registerInput}/>
           </Form.Item>
 
           <Form.Item
@@ -82,7 +103,7 @@ const Register = () => {
               },
             ]}
           >
-            <Input.Password placeholder="Password" classNames={styles.registerInput}/>
+            <Input.Password placeholder="Password" className={styles.registerInput}/>
           </Form.Item>
         </div>
 
